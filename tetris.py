@@ -2,10 +2,11 @@ import pygame
 from copy import deepcopy
 from random import choice, randrange
 import random
-W, H = 10, 22
+
+W, H = 10, 20
 TILE = 45
 GAME_RES = W * TILE, H * TILE
-RES = 1400, 1050
+RES = 750, 940
 FPS = 60
 
 pygame.init()
@@ -30,9 +31,10 @@ field = [[0 for i in range(W)] for i in range(H)]
 anim_count, anim_speed, anim_limit = 0, 60, 2000
 figure = deepcopy(choice(figures))
 
-
 bg = pygame.image.load('bg.jpg').convert()
+main_font = pygame.font.Font('font/font.ttf', 65)
 
+title_tetris = main_font.render('TETRIS', True, pygame.Color('orange'))
 
 get_color = lambda: (randrange(30, 256)), (randrange(30, 256)), (randrange(30, 256))
 r = random.randint(0, 255)
@@ -122,6 +124,7 @@ while True:
                 figure_rect.x, figure_rect.y = x * TILE, y * TILE
                 pygame.draw.rect(game_sc, col, figure_rect)
 
+    sc.blit(title_tetris, (480, -10))
+
     pygame.display.flip()
     clock.tick(FPS)
-
