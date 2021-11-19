@@ -29,11 +29,11 @@ field = [[0 for i in range(W)] for j in range(H)]
 
 anim_count, anim_speed, anim_limit = 0, 60, 2000
 
-bg = pygame.image.load('bg.jpg').convert()
-game_bg = pygame.image.load('bg2.jpg').convert()
+bg = pygame.image.load('res/bg.jpg').convert()
+game_bg = pygame.image.load('res/bg2.jpg').convert()
 
-main_font = pygame.font.Font('font/font.ttf', 65)
-font = pygame.font.Font('font/font.ttf', 45)
+main_font = pygame.font.Font('res/font.ttf', 65)
+font = pygame.font.Font('res/font.ttf', 45)
 
 title_tetris = main_font.render('TETRIS', True, pygame.Color('orange'))
 title_score = font.render('score:', True, pygame.Color('green'))
@@ -58,16 +58,16 @@ def check_borders():
 
 def get_record():
     try:
-        with open('record') as f:
+        with open('record.json') as f:
             return f.readline()
     except FileNotFoundError:
-        with open('record', 'w') as f:
+        with open('record.json', 'w') as f:
             f.write('0')
 
 
 def set_record(record, score):
     rec = max(int(record), score)
-    with open('record', 'w') as f:
+    with open('record.json', 'w') as f:
         f.write(str(rec))
 
 
@@ -160,7 +160,7 @@ while True:
         figure_rect.y = next_figure[i].y * TILE + 185
         pygame.draw.rect(sc, next_color, figure_rect)
 
-    sc.blit(title_tetris, (485, -10))
+    sc.blit(title_tetris, (485, 10))
     sc.blit(title_score, (535, 780))
     sc.blit(font.render(str(score), True, pygame.Color('white')), (550, 840))
     sc.blit(title_record, (525, 650))
