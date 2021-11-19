@@ -17,7 +17,6 @@ game_sc = pygame.Surface(GAME_RES)
 clock = pygame.time.Clock()
 
 grid = [pygame.Rect(x * TILE, y * TILE, TILE, TILE) for x in range(W) for y in range(H)]
-# get figures
 figures = helper.get_figure(W)
 
 figure_rect = pygame.Rect(0, 0, TILE - 2, TILE - 2)
@@ -73,10 +72,8 @@ while True:
     sc.blit(bg, (0, 0))
     sc.blit(game_sc, (20, 20))
     game_sc.blit(game_bg, (0, 0))
-    # delay for full lines
     for i in range(lines):
         pygame.time.wait(150)
-    # control
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             exit()
