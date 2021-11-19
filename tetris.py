@@ -2,6 +2,8 @@ import pygame
 from copy import deepcopy
 from random import choice, randrange
 
+import helper
+
 W, H = 10, 20
 TILE = 45
 GAME_RES = W * TILE, H * TILE
@@ -15,15 +17,17 @@ clock = pygame.time.Clock()
 
 grid = [pygame.Rect(x * TILE, y * TILE, TILE, TILE) for x in range(W) for y in range(H)]
 
-figures_pos = [[(-1, 0), (-2, 0), (0, 0), (1, 0)],
-               [(0, -1), (-1, -1), (-1, 0), (0, 0)],
-               [(-1, 0), (-1, 1), (0, 0), (0, -1)],
-               [(0, 0), (-1, 0), (0, 1), (-1, -1)],
-               [(0, 0), (0, -1), (0, 1), (-1, -1)],
-               [(0, 0), (0, -1), (0, 1), (-1, -1)],
-               [(0, 0), (0, -1), (0, 1), (-1, 0)]]
+# figures_pos = [[(-1, 0), (-2, 0), (0, 0), (1, 0)],
+#                [(0, -1), (-1, -1), (-1, 0), (0, 0)],
+#                [(-1, 0), (-1, 1), (0, 0), (0, -1)],
+#                [(0, 0), (-1, 0), (0, 1), (-1, -1)],
+#                [(0, 0), (0, -1), (0, 1), (-1, -1)],
+#                [(0, 0), (0, -1), (0, 1), (-1, -1)],
+#                [(0, 0), (0, -1), (0, 1), (-1, 0)]]
+# figures = [[pygame.Rect(x + W // 2, y + 1, 1, 1) for x, y in fig_pos] for fig_pos in figures_pos]
 
-figures = [[pygame.Rect(x + W // 2, y + 1, 1, 1) for x, y in fig_pos] for fig_pos in figures_pos]
+figures = helper.get_figure(W)
+
 figure_rect = pygame.Rect(0, 0, TILE - 2, TILE - 2)
 field = [[0 for i in range(W)] for j in range(H)]
 
