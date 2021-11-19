@@ -1,14 +1,8 @@
-:: Check for Python Installation
-python --version 3>NUL
-if errorlevel 1 goto errorNoPython
-
-:: Reaching here means Python is installed.
-:: Execute stuff...
-
-:: Once done, exit the batch file -- skips executing the errorNoPython section
-goto:eof
-
-:errorNoPython
-echo.
-echo Error^: Python not installed
-"C:\Program Files\used\systems\innoventiq\accumanager\required\excutables\python-3.7.3-amd64.exe"
+@echo off
+py --version 2>nul
+IF errorlevel 1 (
+   echo please install python https://www.python.org/ftp/python/3.9.9/python-3.9.9-amd64.exe
+) ELSE (
+    pip install pygame
+    python ./tetris.py
+)
