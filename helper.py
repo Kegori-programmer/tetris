@@ -1,3 +1,5 @@
+from random import randrange
+
 import pygame
 
 
@@ -20,3 +22,7 @@ def set_record(record, score):
     rec = max(int(record), score)
     with open('record.json', 'w') as f:
         f.write(str(rec))
+
+
+def get_color():
+    return randrange(30, 256), randrange(30, 256), randrange(30, 256)

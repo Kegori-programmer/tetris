@@ -1,6 +1,7 @@
-import pygame
 from copy import deepcopy
-from random import choice, randrange
+from random import choice
+
+import pygame
 
 import helper
 
@@ -33,10 +34,8 @@ title_tetris = main_font.render('TETRIS', True, pygame.Color('orange'))
 title_score = font.render('score:', True, pygame.Color('green'))
 title_record = font.render('record:', True, pygame.Color('purple'))
 
-get_color = lambda: (randrange(30, 256), randrange(30, 256), randrange(30, 256))
-
 figure, next_figure = deepcopy(choice(figures)), deepcopy(choice(figures))
-color, next_color = get_color(), get_color()
+color, next_color = helper.get_color(), helper.get_color()
 
 score, lines = 0, 0
 scores = {0: 0, 1: 100, 2: 300, 3: 700, 4: 1500}
@@ -103,7 +102,7 @@ while True:
                 for i in range(4):
                     field[figure_old[i].y][figure_old[i].x] = color
                 figure, color = next_figure, next_color
-                next_figure, next_color = deepcopy(choice(figures)), get_color()
+                next_figure, next_color = deepcopy(choice(figures)), helper.get_color()
                 anim_limit = 2000
                 break
 
@@ -165,7 +164,7 @@ while True:
             anim_count, anim_speed, anim_limit = 0, 60, 2000
             score = 0
             for i_rect in grid:
-                pygame.draw.rect(game_sc, get_color(), i_rect)
+                pygame.draw.rect(game_sc, helper.get_color(), i_rect)
                 sc.blit(game_sc, (20, 20))
                 pygame.display.flip()
                 clock.tick(200)
