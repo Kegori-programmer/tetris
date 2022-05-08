@@ -3,6 +3,8 @@ from random import choice
 
 import pygame
 
+import pygame
+
 import helper
 
 W = 10
